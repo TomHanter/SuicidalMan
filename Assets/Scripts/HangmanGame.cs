@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -11,6 +12,15 @@ namespace Hangman.Scripts
       public class HangmanGame : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _textField;
+        [SerializeField] private TextMeshProUGUI _textHp;
+        [SerializeField] private TextMeshProUGUI _textLetters;
+        private string initialWord = "";
+        private char[] Letters =
+        {
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+            'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+        };
+        
         [SerializeField] private int hp = 7;
 
         private List<char> guessedLetters = new List<char>();
@@ -19,7 +29,9 @@ namespace Hangman.Scripts
         private string[] words =
         {
             "Cat",
-            "Dog"
+            "Dog",
+            "Orange",
+            "Banana"
         };
 
         private string wordToGuess = "";
@@ -31,11 +43,18 @@ namespace Hangman.Scripts
             var randomIndex = Random.Range(0, words.Length);
 
             wordToGuess = words[randomIndex];
+            
+            for (int i = 0; i < wordToGuess.Length; i++)
+            {
+                initialWord += " _";
+            }
+            _textField.text = initialWord;
+            _textHp.text = "Hp left = " + hp.ToString();
         }
 
         void OnGUI()
         {
-            Event e = Event.current;
+            Event e = Event.current; // событие нажатия клавиши
             if (e.isKey)
             {
                 // Debug.Log("Detected key code: " + e.keyCode);
@@ -44,8 +63,13 @@ namespace Hangman.Scripts
                 {
                     ProcessKey(e.keyCode); // выводим обработку
 
-                    lastKeyPressed = e.keyCode; // буферим нажатую клавишу
+                    lastKeyPressed = e.keyCode; // буферим нажатую клавишу в прошлый раз
                 }
+            }
+
+            if (e.isKey)
+            {
+                
             }
         }
 
@@ -67,20 +91,17 @@ namespace Hangman.Scripts
             {
                 wrongTriedLetter.Add(pressedKeyString);
                 hp -= 1;
-
-                if (hp <= 0)
-                {
-                    print("You Lost");
-                }
-                else
-                {
-                    print("Wrong letter \n Hp left = " + hp);
-                }
+                _textHp.text = "Hp left = " + hp.ToString();
             }
 
             if (wordContainsPressedKey && !letterWasGuessed)
             {
                 guessedLetters.Add(pressedKeyString);
+                
+                if (hp <= 0)
+                {
+                    print("You Lost");
+                }
             }
 
             string stringToPrint = ""; // формир строку которуб хотим вывести и что было угадана
@@ -94,7 +115,8 @@ namespace Hangman.Scripts
                 }
                 else // если не угад
                 {
-                    stringToPrint += "_";
+                    stringToPrint += " _";
+                    
                 }
             }
 
@@ -106,7 +128,10 @@ namespace Hangman.Scripts
             // print(guessedLetters); - так не выводится
             // print(string.Join(",", guessedLetters)); // выводит строчкой 4,5,6,7,8
             print(stringToPrint);
+            
             _textField.text = stringToPrint;
         }
-    }
+    } 
 }
+
+
