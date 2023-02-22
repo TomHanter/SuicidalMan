@@ -9,12 +9,12 @@ public class Restart : MonoBehaviour
     public GameObject gameOverUILose;
     public GameObject gameOverUIWin;
     
-    public void gameOverLose()
+    public void GameOverLose()
     {
         gameOverUILose.SetActive(true);
     }
 
-    public void gameOverWin()
+    public void GameOverWin()
     {
         gameOverUIWin.SetActive(true);
     }
