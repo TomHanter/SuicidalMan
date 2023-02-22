@@ -13,6 +13,7 @@ public class HangmanGame : MonoBehaviour
     [FormerlySerializedAs("_textLetters")] [SerializeField] private TextMeshProUGUI wrongLetters;
     [FormerlySerializedAs("_textHp")] [SerializeField] private TextMeshProUGUI textHp;
     [SerializeField] private TextMeshProUGUI _textHints;
+    [SerializeField] private GameObject[] hpImage;
 
     public Restart gameManagerLose;
     [FormerlySerializedAs("gameManegerWin")] public Restart gameManagerWin;
@@ -111,7 +112,8 @@ public class HangmanGame : MonoBehaviour
         {
             _wrongTriedLetter.Add(pressedKeyString);
             hp -= 1;
-
+            ChangeImageLowerHp(hp);
+            
             if (hp <= 0)
             {
                 gameManagerLose.GameOverLose();
@@ -166,5 +168,14 @@ public class HangmanGame : MonoBehaviour
         // print(string.Join(", ", guessedLetters));
         print(stringToPrint);
         textFiedlWord.text = stringToPrint;
+
+       
+    }
+   private void ChangeImageLowerHp(int hpValue)
+    {
+        foreach (var image in hpImage)
+        {
+            image.SetActive(hpValue.ToString() == image.name);
+        }
     }
 }
