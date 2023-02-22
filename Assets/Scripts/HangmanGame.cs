@@ -12,6 +12,7 @@ public class HangmanGame : MonoBehaviour
 
     [FormerlySerializedAs("_textLetters")] [SerializeField] private TextMeshProUGUI textLetters;
     [FormerlySerializedAs("_textHp")] [SerializeField] private TextMeshProUGUI textHp;
+    [SerializeField] private TextMeshProUGUI _textHints;
 
     public Restart gameManagerLose;
     [FormerlySerializedAs("gameManegerWin")] public Restart gameManagerWin;
@@ -20,21 +21,32 @@ public class HangmanGame : MonoBehaviour
 
     private string _initialWord = "";
 
-    private char[] _letters =
-    {
-        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
-        'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
-    };
 
     private readonly string[] _words =
     {
         "Cat",
         "Dog",
         "Orange",
-        "Banana"
+        "Banana",
+        "Apple",
+        "Bus"
+            
     };
 
+    private readonly string[] _hints =
+    {
+        "A pet that meows",
+        "A pet that barks",
+        "Citrus fruit",
+        "Yellow fruit",
+        "Phone fruit",
+        "Passenger transport"
+        
+    };
+    
     private string _wordToGuess = "";
+    
+    private string _hint = "";
 
     private KeyCode _lastKeyPressed;
 
@@ -43,14 +55,17 @@ public class HangmanGame : MonoBehaviour
         int randomIndex = Random.Range(0, _words.Length);
 
         _wordToGuess = _words[randomIndex];
+        _hint = _hints[randomIndex];
 
         for (int i = 0; i < _wordToGuess.Length; i++)
         {
             _initialWord += " _";
         }
 
+        _textHints.text = _hint;
         textFiedlWord.text = _initialWord;
         textHp.text = "Hp left = " + hp.ToString();
+        
     }
 
 
