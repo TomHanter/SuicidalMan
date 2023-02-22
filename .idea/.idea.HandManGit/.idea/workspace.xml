@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4a438d45-d4ca-450c-8347-e025e3fc8990" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HandManGit/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HandManGit/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/HangMan.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/HangMan.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/HangmanGame.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HangmanGame.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -96,7 +97,7 @@
       <workItem from="1676790809621" duration="14280000" />
       <workItem from="1676813066681" duration="2220000" />
       <workItem from="1676918322599" duration="1510000" />
-      <workItem from="1677075179613" duration="932000" />
+      <workItem from="1677075179613" duration="1671000" />
     </task>
     <servers />
   </component>

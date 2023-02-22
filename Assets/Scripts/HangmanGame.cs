@@ -10,7 +10,7 @@ public class HangmanGame : MonoBehaviour
     [FormerlySerializedAs("_textFiedlWord")] [FormerlySerializedAs("_textField")] [SerializeField]
     private TextMeshProUGUI textFiedlWord;
 
-    [FormerlySerializedAs("_textLetters")] [SerializeField] private TextMeshProUGUI textLetters;
+    [FormerlySerializedAs("_textLetters")] [SerializeField] private TextMeshProUGUI wrongLetters;
     [FormerlySerializedAs("_textHp")] [SerializeField] private TextMeshProUGUI textHp;
     [SerializeField] private TextMeshProUGUI _textHints;
 
@@ -119,6 +119,7 @@ public class HangmanGame : MonoBehaviour
             }
             else
             {
+                wrongLetters.text +=  pressedKeyString + " ";
                 textHp.text = "Hp left = " + hp.ToString();
             }
         }
